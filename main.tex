@@ -1,0 +1,231 @@
+\documentclass[
+    paper=a4,
+    fontsize=11pt,
+    twoside=false,
+    parskip=half,
+    listof=totoc
+]{scrbook}
+
+\usepackage{scrhack}  % fixes warnings caused by listings package
+% TODO: margins
+
+%% language settings
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}  % not always necessary
+\usepackage[english]{babel}
+\usepackage{csquotes}
+
+%% color and graphics
+\usepackage{xcolor}  % for colors. Pass the option "table" to colorize table rows, and "dvipsnames or "svgnames" to use more color names
+
+%% bibliography
+\usepackage[style = authoryear, backend = biber, natbib = true]{biblatex}
+\addbibresource{bibliography.bib}
+
+%% figures
+\usepackage{graphicx}  % for \includegraphics
+\graphicspath{{figures/}}  % set default path for figures
+\usepackage[caption=false]{subfig}  % for subfigures: \subfloat[Caption]{\includegraphics[...]{...}}
+
+%% tables
+\usepackage{longtable}  % if you need tables that span multiple pages: \begin{longtable}{...} ... \end{longtable}
+% nicer tables
+\usepackage{booktabs}
+\renewcommand{\arraystretch}{1.2}  % more space between rows
+
+% code listings and algorithms
+\usepackage{algorithm}  % for algorithms: \begin{algorithm} ... \end{algorithm}
+\usepackage{listings}  % for code listings: \begin{lstlisting}[language=Python] ... \end{lstlisting}
+\lstset{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+    upquote=true,
+    showstringspaces=false,
+    commentstyle=\color{gray},
+    keywordstyle=\color{blue},
+    stringstyle=\color{red}
+}
+\usepackage{algpseudocode}  % for pseudocode: \begin{algorithmic} ... \end{algorithmic}
+
+%% math
+\usepackage{amsmath}  % for \DeclareMathOperator, \text, \mathbb, etc.
+\usepackage{amsfonts}  % declares mathematical fonts
+\usepackage{amssymb}  % declares mathematical symbols
+\usepackage{bm}  % bold math symbols: use \bm{\lambda}
+\usepackage{mathtools}  % for \DeclarePairedDelimiter
+\input{definitions/math}  % custom math commands
+
+%% glossaries
+\usepackage[toc]{glossaries}
+
+%% various helpers
+\usepackage{titling}  % make \theauthor, \thetitle, \thedate available
+
+%% TODO notes
+\usepackage{todonotes}
+
+%% Headers. Note that scrbook is not compatible with fancyhdr.
+%\usepackage[automark,headsepline,plainheadsepline]{scrlayer-scrpage}
+%\clearpairofpagestyles
+%\ihead{\leftmark}
+%\ohead*{\pagemark}
+%\addtokomafont{pagehead}{\normalfont}
+%\renewcommand\chaptermarkformat{\ifnumbered{chapter}{\chapapp\ \thechapter:\enskip}{}}
+
+%% Make "List of X" conditional on there being any X
+\usepackage{assoccnt}
+\usepackage{totcount}
+% Figures
+\regtotcounter{figure}
+\newtotcounter{totfigures}
+\DeclareAssociatedCounters{figure}{totfigures}
+% Tables
+\regtotcounter{table}
+\newtotcounter{tottables}
+\DeclareAssociatedCounters{table}{tottables}
+% Listings
+\regtotcounter{lstlisting}
+\newtotcounter{totlistings}
+\DeclareAssociatedCounters{lstlisting}{totlistings}
+% Algorithms
+\regtotcounter{algorithm}
+\newtotcounter{totalgorithms}
+\DeclareAssociatedCounters{algorithm}{totalgorithms}
+
+%% hyperlinks within the document -- this should be the last package
+\usepackage[hidelinks]{hyperref}  % "hidelinks" removes the colored boxes around links that are otherwise present when viewing the document electronically
+\usepackage{cleveref}  % \cref{}: automatically adds "Figure" etc. to references.
+
+\input{definitions/metadata}
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+
+        \Huge
+        \textbf{\thetitle}
+
+        \vspace{0.5cm}
+        \LARGE
+        text
+
+        \vspace{1.5cm}
+
+        \textbf{\theauthor}
+
+        \vfill
+
+        \large
+        A thesis presented for the degree of\\
+        \textit{\thesisdegree}
+        in the Field of \thesisfield
+
+        \vspace{0.8cm}
+
+        %% \includegraphics[width=0.4\textwidth]{figures/lmu-logo}
+
+        \vspace{0.8cm}
+
+        \textbf{\thedate}
+
+    \end{center}
+\end{titlepage}
+\frontmatter
+\chapter*{Abstract}
+\input{chapters/00_abstract}
+\include{chapters/05_front_matter}
+
+%Master Thesis
+
+%title
+
+%Ludwig-Maximilians-Universität München
+
+%Fakultät für Mathematik, Informatik und Statistik
+
+%Institut für Statistik
+
+% ------
+% title
+% ------
+%
+%  author
+% supervisors
+% date
+
+\tableofcontents
+\ifnum\totvalue{totfigures}>0
+  \listoffigures
+\fi
+\ifnum\totvalue{tottables}>0
+  \listoftables
+\fi
+\ifnum\totvalue{totlistings}>0
+  \lstlistoflistings
+\fi
+\ifnum\totvalue{totalgorithms}>0
+  \listofalgorithms
+\fi
+
+% TODO: glossaries, notation, abbreviations
+%\printglossaries
+%\listofabbreviations
+%\listofnomenclature
+
+
+% actual content
+\mainmatter
+\include{chapters/10_introduction}
+\include{chapters/20_related}
+\include{chapters/30_background}
+\include{chapters/40_methods}
+\include{chapters/50_experiments}
+\include{chapters/60_results}
+\include{chapters/70_discussion}
+\include{chapters/80_conclusion}
+
+% Bibliography
+\chapter{Bibliography}
+\printbibliography[heading=none]
+
+% Appendices
+\appendix
+\include{chapters/90_appendix}
+% \include{chapters/91_appendix_<name>}
+% \include{chapters/92_appendix_<name>}
+
+%\textcquote{knuth:ct}{This is a quote.}
+%\blockcquote[pages 100--101]{knuth:ct}{This is a quote.}
+
+
+\backmatter
+\cleardoublepage
+\thispagestyle{empty}
+%% "Eigenstaendigkeitserklaerung" / Declaration of Authorship
+%
+% Hiermit versichere ich, dass ich die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe.
+
+\section*{Declaration of Authorship}
+
+I hereby declare that this thesis is my own work and that I have not used any sources or aids except the ones declared or referenced.
+Text passages quoted verbatim or near-verbatim from external sources, as well as figures taken from or based on external sources, are marked as such.
+
+\noindent
+I further declare that this thesis has not been submitted to any other examination board in the same or similar form.
+
+\vspace{2cm}
+\begin{center}
+\begin{tabular}{@{}p{6cm}@{}}
+\dotfill \\
+\hspace*{0.5cm}Place, Date \\
+\end{tabular}
+\hfill
+\begin{tabular}{@{}p{6cm}@{}}
+\dotfill \\
+\hspace*{0.5cm}\theauthor \\
+\end{tabular}
+\end{center}
+\end{document}
+
