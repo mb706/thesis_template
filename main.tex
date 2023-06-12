@@ -1,25 +1,43 @@
 \documentclass[
     paper=a4,
-    fontsize=11pt,
-    twoside=false,
+    fontsize=12pt,
+    twoside=false,  % set to true for two-sided printing, but theses are typically printed one-sided.
     parskip=half,
-    listof=totoc
+    listof=totoc,
+    DIV=calc  % calculate type area (see KOMA documentation!)
 ]{scrbook}
 
+
+%% Exam Regulations tell us to use Arial size 11pt, which we could get by doing the following
+%% (we would be cheating slightly by using the very similar Helvetica font)
+%% However, this looks awful. Uncomment at your own risk.
+%\usepackage[scaled=0.92]{helvet}  % scaled to match it with rm font
+%\renewcommand\familydefault{\sfdefault}%  % use sans-serif font for the rest of the document
+%% Reset margins:
+%\typearea[current]{calc}  % recalculate type area (needed when changing fonts) -- KOMA style (large margins!)
+%% -- or --
+%\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}  % geometry package (small margins)
+
+
 \usepackage{scrhack}  % fixes warnings caused by listings package
+\usepackage{setspace}  % for \setstretch
 % TODO: margins
 
 %% language settings
-\usepackage[T1]{fontenc}
+\usepackage{cmap}  % make copy-paste work
 \usepackage[utf8]{inputenc}  % not always necessary
+\usepackage[T1]{fontenc}
+\usepackage[babel=true,expansion=alltext,protrusion=alltext-nott]{microtype}  % better kerning and general typography
 \usepackage[english]{babel}
-\usepackage{csquotes}
+\usepackage{csquotes}  % for \enquote{...}
+
+\DisableLigatures{encoding = T1, family = tt* }  % disable minus-minus ligature for typewriter font
 
 %% color and graphics
 \usepackage{xcolor}  % for colors. Pass the option "table" to colorize table rows, and "dvipsnames or "svgnames" to use more color names
 
 %% bibliography
-\usepackage[style = authoryear, backend = biber, natbib = true]{biblatex}
+\usepackage[style = authoryear, backend = biber, natbib = true, minnames=1, maxcitenames=2, maxbibnames=99]{biblatex}
 \addbibresource{bibliography.bib}
 
 %% figures
@@ -30,7 +48,7 @@
 %% tables
 \usepackage{longtable}  % if you need tables that span multiple pages: \begin{longtable}{...} ... \end{longtable}
 % nicer tables
-\usepackage{booktabs}
+\usepackage{booktabs}  % for \toprule, \midrule, \bottomrule
 \renewcommand{\arraystretch}{1.2}  % more space between rows
 
 % code listings and algorithms
@@ -56,15 +74,13 @@
 \usepackage{mathtools}  % for \DeclarePairedDelimiter
 \input{definitions/math}  % custom math commands
 
-%% glossaries
-\usepackage[toc]{glossaries}
-
 %% various helpers
 \usepackage{titling}  % make \theauthor, \thetitle, \thedate available
+\usepackage{xstring}  % for StrCount, so "Supervisor(s)" can be pluralized
+\usepackage{ifthen}
 
-%% TODO notes
-\usepackage{todonotes}
-
+%% todo-notes
+\usepackage[colorinlistoftodos]{todonotes}
 
 %% Headers. Note that scrbook is not compatible with fancyhdr.
 %\usepackage[automark,headsepline,plainheadsepline]{scrlayer-scrpage}
@@ -94,33 +110,83 @@
 \newtotcounter{totalgorithms}
 \DeclareAssociatedCounters{algorithm}{totalgorithms}
 
+
+
+\PassOptionsToPackage{hyphens}{url}  % is loaded by other packages, so we need to pass the option here
 %% hyperlinks within the document -- this should be the last package
 \usepackage[hidelinks]{hyperref}  % "hidelinks" removes the colored boxes around links that are otherwise present when viewing the document electronically
+\usepackage[hyphens]{url}
 \usepackage{cleveref}  % \cref{}: automatically adds "Figure" etc. to references.
+
+
+%% glossaries, load after hyperref
+\usepackage{ragged2e}  % for \Centering, \RaggedLeft and \RaggedRight used in glossary entries
+\usepackage[toc]{glossaries}
+
+\usepackage[all,defaultlines=3]{nowidow}  % prevent widows and orphans
+
+\usepackage{footnotehyper}  % for footnotes in tables
+\makesavenoteenv{tabular}  % recommended by footnotehyper docs
+\makesavenoteenv{table}  % ditto
+
+\setcounter{tocdepth}{1}  % table of contents depth: 0 = chapter, 1 = section, 2 = subsection, 3 = subsubsection
 
 \input{definitions/metadata}
 
+\makeatletter
+\hypersetup{
+  pdftitle={\thetitle}, % Title
+  pdfauthor={\theauthor}, % Author
+  pdfsubject={\thesisfield}
+}
+\makeatother
+
+\newcommand{\printsupervisors}{
+    \StrCount{\supervisor}{\\}[\numberofsupervisors]
+    \textbf{\ifthenelse{\numberofsupervisors > 0}{Supervisors:}{Supervisor:}}
+    \hspace*{0.1cm}
+    \begin{tabular}[t]{@{}p{9cm}@{}}
+        \supervisor
+    \end{tabular}
+}
+
+
+%\usepackage{showframe}
 \begin{document}
 \begin{titlepage}
     \begin{center}
-        \vspace*{1cm}
+        \LARGE
+        \university\\
+        \vspace{0.2cm}
+        \large
+        {\setstretch{1.5}
+        \institution
+
+        }
+        \vspace{1cm}
 
         \Huge
+
+        \hrule
         \textbf{\thetitle}
+        \vspace{\topskip}
+        \hrule
 
-        \vspace{0.5cm}
+        \vspace{1cm}
         \LARGE
-        text
-
-        \vspace{1.5cm}
 
         \textbf{\theauthor}
 
         \vfill
 
+
+
+
         \large
-        A thesis presented for the degree of\\
-        \textit{\thesisdegree}
+        A Thesis Submitted in Partial Fulfillment \\ of the Requirements for the Degre of\\
+        \vspace{0.5cm}
+        \textit{\thesisdegree}\\
+        \vspace{0.5cm}
         in the Field of \thesisfield
 
         \vspace{0.8cm}
@@ -128,34 +194,21 @@
         %% \includegraphics[width=0.4\textwidth]{figures/lmu-logo}
 
         \vspace{0.8cm}
+        \printsupervisors
 
-        \textbf{\thedate}
-
+        \vspace{0.5cm}
+        \textbf{\Large\thedate}
+        \vspace{-\footskip}  % pull down the date to the bottom of the page (footnote height)
     \end{center}
 \end{titlepage}
+
 \frontmatter
+\onehalfspacing
+\renewcommand{\familydefault}{\sfdefault}  % use sans-serif font for the rest of the document
+
 \chapter*{Abstract}
 \input{chapters/00_abstract}
 \include{chapters/05_front_matter}
-
-%Master Thesis
-
-%title
-
-%Ludwig-Maximilians-Universität München
-
-%Fakultät für Mathematik, Informatik und Statistik
-
-%Institut für Statistik
-
-% ------
-% title
-% ------
-%
-%  author
-% supervisors
-% date
-
 
 \tableofcontents
 \ifnum\totvalue{totfigures}>0

@@ -45,6 +45,12 @@ For bibliography, the template uses [BibLaTeX](https://www.ctan.org/pkg/biblatex
 
 The `glossaries` package is used for the list of abbreviations and the list of mathematical notation. The `glossaries-extra` package is used for the list of symbols. The `glossaries` package is also used for the list of acronyms, but the `acronym` package is used for the acronym definitions. This is because the `glossaries` package does not support the `longtable` package, which is required for the list of acronyms.
 
+The LMU exam regulations for Bachelor and Master theses state that the thesis should be a certain number of pages in 11pt Arial.
+You can set this option by changing `fontsize=12pt` to `fontsize=11pt` and uncommenting a few lines at the beginning of the `main.tex` file.
+However, this does not look very nice and the long lines make the result hard to read.
+Arial / Helvetica is an uncommon font for scientific documents in our field.
+This template therefore uses 12pt Computer Modern, which is the default font of LaTeX.
+
 ## Compilation
 
 The template uses [latexmk](https://www.ctan.org/pkg/latexmk/) for compilation.
@@ -64,61 +70,11 @@ This means that you can do whatever you want with this template, without having 
 
 Since you may want to make your thesis repo public, but under a different license, you should remove this paragraph after cloning the repository to avoid ambiguity.
 
+## TODO
 
-## Notes
-
-     LMU Munich
-     Faculty of Mathematics, Informatics and Statistics
-     Department of Statistics
-
-     Master Thesis
-
-     -- Title --
-
-     Author: -- Author --
-
-     Supervisors: -- Supervisor 1 --
-                  -- Supervisor 2 --
-
-    --Date--
-
---------------------------------------------
-(Declaration of Authorship?)
-    Abstract
-    ToC
-
-        OR: ToC, Abstract
-
-            (Maybe: List of Abbreviations, Mathematical Notation, Danksagung)
-
-        Intro
-            Motivation
-            Problem
-            Solution
-            Outline
-        Related Work
-        THING WE ARE DOING
-            Background
-            Related Work
-        Experimental Setup
-            Data
-            Methods
-        Results
-        Discussion
-        Conclusion (and Outlook)
-
-    Appendices
-        Appendix A
-        Appendix B
-
-    List of Figures
-    List of Tables
-    References
-
-
-    Single Page (?)
-
-    1.5 line spacing(?)
-    Arial 11pt
-
-    Chapter title on top, page number on bottom(?)
+* style recommendations check
+* add examples for tables
+* add example listing and algorithm
+* use all cleveref references
+* use acronyms
+* add subfigure example
