@@ -62,6 +62,8 @@ This template is licensed as [CC0 1.0 Universal](https://creativecommons.org/pub
 To the extent possible under law, mb706 has waived all copyright and related or neighboring rights to this thesis template.
 This means that you can do whatever you want with this template, without having to ask for permission or mention the original author.
 
+Since you may want to make your thesis repo public, but under a different license, you should remove this paragraph after cloning the repository to avoid ambiguity.
+
 
 ## Notes
 
