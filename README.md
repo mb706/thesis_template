@@ -81,7 +81,7 @@ You can use tools like [Tables Generator](https://www.tablesgenerator.com/) to c
 * Use `\dots{}` for ellipses in text, and `\ldots{}` for ellipses in math mode.
 * Use hyphens (minus-sign, `-`) inside words ("well-known method").
 * Use em-dashes (tripple-minus, `---`) for parenthetical sentences.
-  There should be no spaces around em-dashes: `This results---although not conclusive---suggests that...`.
+  There should be no spaces around em-dashes: `This result---although not conclusive---suggests that...`.
   Use em-dashes sparingly. 
 * Use en-dashes (double-minus, `--`) for numeric ranges in text, e.g. "1--10", and `\ldots{}` for ranges in math mode.
 * Always use math-mode when referring to variables, i.e. write `$x$` instead of just `x` when referring to a variable *x*.
