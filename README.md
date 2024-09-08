@@ -22,6 +22,21 @@ The format suggested here, however, is particularly well suited when you plan to
 I also think that the advice in the template about *what* to put *where* in the thesis is sound, and that even when merging or splitting chapters, you should try to adhere to it in principle.
 This includes points about not presenting previously unmentioned experimental results in the "discussion" or "conclusion", or about separating the descriptions of aspects that are intrinsic to your method ("Methods") and the description of particular choices made in your experiments ("Experiments").
 
+### Your Target Audience
+
+When writing a scientific paper, you are writing to inform other scientists that are relatively familiar with the subject matter.
+This is different for a thesis, where your goal is at least partially to show that you understand the subject matter at hand.
+You will therefore have to describe some things in somewhat more detail than what you find in scientific papers.
+
+As your target audience, try to imagine your classmates who study the same subject as you do, but who have not done the reading that you have done for your particular thesis project.
+Are they able to understand the reasoning in your thesis?
+Would they be able to implement your algorithms (to a reasonable degree of faithfulness), given how you describe it in your text?
+Would they understand why you draw the conclusions that you do, from your experimental results?
+
+What is particularly relevant here is that you will need to describe and explain existing results, algorithms, libraries etc. that you make use of to a greater detail than you otherwise would:
+Unlike scientific papers, one should be able to understand your thesis without having to read through referenced material.
+This does not mean including every detail, but relevant information that is necessary to understand your thesis should be given.
+
 ## Structure
 
 The `main.tex` file is the main file of your thesis, but should not be used for writing.
