@@ -1,16 +1,63 @@
 \chapter{Methods}\label{chap:methods}
 
+Describe the ``method'' used by the thesis.
+
+At first sight, there are two kinds of ``methods'' to many theses:
+\begin{enumerate}
+    \item Newly invented algorithms, or at least approaches to solving a problem.
+    This is often a refinement of an existing algorithm for an existing problem.
+    It could also be that the problem at hand is a novel one that has not been investigated before, or that an entirely new idea is being tried out.
+    \item The ``method'' of how this new idea or algorithm is being investigated.
+    Typically this means running experiments that compare the new algorithm against existing ``baseline'' algorithms.
+\end{enumerate}
+
+The ``Methods'' chapter \emph{only} refers to the \emph{first} of these two.
+The way the experiments are conducted is described in the ``Experiments'' chapter.
+
+It should typically start with a small introduction and justification behind the novel idea, to the degree this is not already presented in the ``Introduction'' chapter (e.g.\ because it is very technical).
+This could include theoretical work and (outlines of) proofs.
+Proofs that are either very long or only tangentially relevant should go in the appendix.
+
+The methods should then be described in reasonable detail.
+A skilled practitioner of the relevant field should be able to understand, and ideally re-implement, the methods from this chapter.
+Use diagrams and \texttt{\char`\\algorithm}s to aid your presentation, if possible.
+
+It is likely that your method has various configuration options, which should be described as well, both in terms of what the different options are, and what kind of effect you anticipate them to have.
+You can also describe, and justify, what particular setting(s) you believe are the settings for which you expect the method to work best, but only to the degree that you can justify that from theoretical work, not from your experimental results.
+However, you should \emph{not} describe the particular settings that you used in your experiments, this is what the ``Experiments'' chapter is for.
+A rule of thumb is:
+If someone else wanted to use your method, and they could reasonably use a configuration that  differs from the settings you used in your experiments, then you should present the \emph{option} of using different configuration settings here, and the particular setting that you used in your experiments in the ``Experiments'' chapter.
+
+Break the chapter up into sections and possibly subsections to present different methods, or to separate algorithms from theoretical work.
+You should give your algorithms names, which you use to refer to them in other parts of the text.
+
 \section{Method 1}
 
-TODO: describe the method.
+TODO: describe the method. See x x x x x x x x x x x x x x x x  x x x Figure~\ref{fig:placeholder}. $\sqrt{a}=\cos{\frac{b}{c}}$
+a
+b
+
+c
+
+\begin{equation}\label{eqn:sqrta}
+\sqrt{a}=\cos{\frac{b}{c}}
+\end{equation}
 
 \section{Method 2}
 
-TODO: describe the method. \cite{somearticle}
+TODO: describe the method shown in Equation~\eqref{eqn:sqrta}. \cite{somearticle}
 
 \begin{figure}[ht]
     \centering
-    A FIGURE
-    \caption{A placeholder figure.}
+    A FIGURE to show before the other one.
+    \caption[Short caption as shown in the list of figures.]{A placeholder figure.}
+    \label{fig:preplaceholder}
+\end{figure}
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics{cat.jpg}  % note that the 'figures' folder is the default, so we don't need to include it in the path here
+    \caption[Placeholder II]{A placeholder figure.}
     \label{fig:placeholder}
 \end{figure}

@@ -1,3 +1,34 @@
-\newacronym{svm}{SVM}{support vector machine}
-\newacronym{ml}{ML}{machine learning}
-\newacronym{dl}{DL}{deep learning}
+% Defining acrynoms in this file using the 'glossary' package.
+
+% To refer to acronyms in the text, use \gls{HP} (or \Gls{HP} to start with a capital letter).
+% It prints the acronym "HP" everywhere except in its first occurrence, where it prints "hyperparameter (HP)" (or "Hyperparameter (HP)" for \Gls).
+% Short guide:
+% - Use \gls in most cases
+% - Use \Gls at the beginning of a sentence (or wherever you want capitalization)
+% - Use \glspl, \Glspl for plural
+% - Do not use acronyms in section / chapter titles!
+% - Use \acrshort to force the short version of the acronym. This makes sense if you want the acronym to link to the list of acronyms, which does not happen if you just write the acronym without a gls / acr command.
+% - \acrfull, \Acrfull to force expansion ("longform (shortform)"), even if it was expanded before
+% - \acrlong, \Acrlong: long form only
+
+%% Things to create acronyms for:
+% - technical terms that are often shortened, e.g. "Hyperparameters (HPs)"
+% - Algorithms with acronyms that are descriptive, common and generic and are therefore basically technical terms, e.g. "Bayesian optimization (BO)"
+%% Things that should probably not have acronyms
+% - "Acronyms" for algorithms that are more like fancy names, e.g. irace, SMAC -- Noone writes about 'SMAC' cares what it is an abbreviation for, it is just the name of the software.
+% - Acronyms that do not need explanation, either because they are common knowledge even outside the target audience of the thesis ("FBI") or because they denote things only mostly only known by that acronym ("DNA").
+% - Exceptions may occur when the actual long form of an acronym is relevant to the content of the thesis, e.g. HTML in a thesis about markup languages.
+
+% Format: <label> <acronym> <long form>
+% Acronyms are referred to as \gls{<label>}; it is usually convenient to have it identical to the acronym.
+\newacronym{BO}{BO}{Bayesian optimisation}
+% Notice that long forms are lower case; only if they involve proper names, e.g. names of people, these are capitalized.
+\newacronym{HP}{HP}{hyperparameter}
+% some long forms have plurals that are not just <long form>s; in this case it has to be mentioned extra.
+\newacronym[longplural={Gaussian processes}]{GP}{GP}{Gaussian process}
+\newacronym{RF}{RF}{random forest}
+
+
+% Only the acronyms used in the text are listed in the list of acronyms.
+% To change this behaviour, uncomment the following:
+%\glsaddall

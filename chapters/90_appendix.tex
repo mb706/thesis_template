@@ -1,0 +1,17 @@
+
+\chapter{Additional Figures}
+Here you could list additional figures, additional tables ore more detail that does not fit in the flow of the main text.
+This is usually additional details that a reader of the thesis may be interested in, but that are not strictly necessary to understand the thesis.
+
+Examples are:
+\begin{enumerate}
+    \item Figures that show experimental results under various conditions, when most or all conditions lead to essentially the same result---it is interesting to know that the results are robust, but if this amounts to many plots that may interrupt the flow of the thesis.
+    \item Proofs that involve many steps and are not central to the thesis.
+    \item Specific details of the experimental setup that are necessary to know about if one wanted to reproduce the experiments, but which are only marginally interesting when interpreting the experimental results or forming an opinion about their validity.
+\end{enumerate}
+
+You should \emph{not} put source code in the appendix (instead, it should be handed in electronically).
+
+This template makes a choice about prefixing the appendix header with ``Appendix <counter>. <Title>''.
+You can switch this off, making the header ``<counter>. <Title>'' only, by commenting out the \texttt{\char`\\renewcommand} line in the \texttt{appendices} environment in \texttt{main.tex}.
+You can also add a separate, mostly empty, 'Appendices' page by adding the \texttt{page} and \texttt{titletoc} options to the \texttt{appendix} package in \texttt{main.tex}.

@@ -1,11 +1,57 @@
 \chapter{Experiments}\label{chap:experiments}
 
-TODO: experiments. What experiments have been conducted? Describe them in detail, explaining any design choices.
+What experiments have been conducted?
+Describe them in detail, explaining any design choices.
+
+Things that are integral to your methods, in the sense that someone else would also use your method like that, should be described in ``Methods''.
+What goes here are the specific settings and choices you made in your experimental setup.
+
+Various choices should also be justified here, to some degree.
+Good justifications for a choice of dataset could be that they are recommended in the literature, or commonly used, or because the work that your thesis mainly builds upon also uses them and makes it possible for you to compare against them.
+You may also justify various algorithmic choices with the fact that other choices would be too costly in terms of CPU time or storage.
+
 
 \section{Experimental Setup}\label{sec:experimental-setup}
 
+Start by describing the overall experimental setup.
+What is being measured?
+How is it being measured?
+What software, what libraries, what computer setup are you using?
+
+\section{Methods}\label{sec:experimental-methods}
+
+Describe how the particular methods or algorithms that are being used are set up.
+Here you should describe (and possibly justify) the choices you have made about configuration options in your algorithms.
+
+Also describe the baselines that you are comparing against:
+Are you using your own implementations of various algorithms, or existing packages?
+
+It usually helps to give the configurations that you are investigating short names, that you can then use to refer to these configurations in your graphs and tables.
+These could, e.g., be of the form \texttt{BO-RF} and \texttt{BO-GP} if you are using \acrfull{BO} with both a \acrfull{GP} and a \acrfull{RF}.
+A table that lists the various options like \cref{tab:methods} could also be helpful here.
+Notice how it is not necessary to use a separate line for \texttt{BO-RF} and \texttt{BO-GP}, since the parametrization through \texttt{<model>} is straightforward.
+
+\begin{table}[H]
+\centering
+\caption[Names and descriptions of method configurations.]{Names and descriptions of method configurations used in the experiments.}
+\begin{tabular}{ll}
+\toprule
+\textbf{Abbreviation} & \textbf{Description} \\
+\midrule
+\texttt{BO-<model>} & \Acrshort{BO} using \texttt{<model>} as surrogate model, either a \acrshort{GP} or a \acrshort{RF}. \\
+\texttt{RS} & Random search \citep{bergstra2012random}.  \\ 
+\bottomrule
+\end{tabular}
+\label{tab:methods}
+\end{table}
+
 \section{Data}\label{sec:data}
+
+Describe various relevant aspects to your experiments, and give them their own section if they are warrant a more detailed description.
+E.g.\ if you did experiments on different datasets, they should be described, together with possible justifications for the choice of data, or how the specific choice of datasets could influence or bias the results.
 
 \section{Metrics}\label{sec:metrics}
 
-
+Similar subsections could be created about other aspects of the experiments.
+Remember that conducting the experiments itself is only a part of the experiments; how you evaluate the resulting raw data is also important and should be described.
+This includes what kinds of metrics are collected (and what they mean), how they are being treated statistically, what kinds of statistical tests you do etc.

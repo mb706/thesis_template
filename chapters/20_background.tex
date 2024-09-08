@@ -1,0 +1,39 @@
+\chapter{Background}\label{chap:background}
+
+\section{Theoretical Background}
+
+Present theoretical background that is relevant for the thesis, particularly mathematical concepts and algorithms.
+This should include a (reasonably) mathematically precise treatment of relevant subject matter (e.g.\ defining expected risk minimisation) that introduces the most relevant mathematical terms (e.g.\ data generating processes).
+
+If the main contribution of the thesis is theoretical, e.g.\ theorems and proofs, they should typically not be here, but in the ``Methods'' chapter. 
+
+\section{Method from Literature 1}
+
+(Use the name of the actual method as section title.)
+
+In a thesis, unlike a scientific paper, the relevant technologies that are being built upon should also be explained to some depth, to the degree that they are needed to understand the main method of the paper.
+To some degree this is to show that you actually understand the subject that you are writing about.
+
+E.g.\ if the paper presents a new kind of neural network architecture that is made up of various layer types, the layer types should be explained.
+The level of detail here has to be balanced against the length of this chapter---do not describe backpropagation just because your thesis just happens to involve a neural network somewhere, if the method of optimisation of the neural network itself is not relevant.
+
+This latter part could also be merged with the ``Related Work'' chapter, or could be its own chapter (or several chapters) entirely.
+
+\section{Method from Literature 2}
+
+When describing methods from the literature here and in the ``Related Work'' chapter, they should be described in the way they are used / presented in the literature, possibly with some emphasis on aspects that are relevant for the thesis.
+These chapters are \emph{not} for the presentation of original ideas---this belongs in the ``Methods'' chapter.
+You can, at most, (1, optional) start various subsections with a small description of why the method presented is relevant to the thesis, and (2, very optional!) end the description of a method by making a few small hints about what the method presented in the thesis does different from the literature.
+However, one should also be able to understand the method without reading the background or related work chapters, if one is familiar with the relevant literature, so whatever is written here about the main method should then not be missing from the method chapter.
+
+\section{Benchmark Library}
+
+You may have to describe the background to various aspects of your experimental setup to some detail that goes beyond what you would do in a scientific paper.
+E.g.\ if you use a library for benchmarking optimiser performance, and that library uses some interesting technology, that could be described here.
+You may also describe it in the ``Methods'' or ``Experiments''.
+
+I would recommend describing it here if it is a relatively major part of your experiments, if it is relatively non-standard or novel, and if knowing about its inner workings could help an outsider understand various choices you made in your thesis.
+If the way you are using it in the experimental setup is innovative in itself, you could additionally describe and justify that innovative aspect in ``Methods''.
+
+Aspects of your experiments that are relatively straightforward and can also just be mentioned (and possibly cited) in ``Experiments''.
+You do not need to do not need to describe every library that you use in detail.

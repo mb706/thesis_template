@@ -66,6 +66,9 @@
 }
 \usepackage{algpseudocode}  % for pseudocode: \begin{algorithmic} ... \end{algorithmic}
 
+%% acronyms
+%\usepackage[printonlyused]{acronym}
+
 %% math
 \usepackage{amsmath}  % for \DeclareMathOperator, \text, \mathbb, etc.
 \usepackage{amsfonts}  % declares mathematical fonts
@@ -90,7 +93,7 @@
 %\addtokomafont{pagehead}{\normalfont}
 %\renewcommand\chaptermarkformat{\ifnumbered{chapter}{\chapapp\ \thechapter:\enskip}{}}
 
-%% Make "List of X" conditional on there being any X
+%% Make "List of X" (e.g. "List of Figures") conditional on there being any X
 \usepackage{assoccnt}
 \usepackage{totcount}
 % Figures
@@ -112,16 +115,21 @@
 
 
 
+
+
 \PassOptionsToPackage{hyphens}{url}  % is loaded by other packages, so we need to pass the option here
 %% hyperlinks within the document -- this should be the last package
 \usepackage[hidelinks]{hyperref}  % "hidelinks" removes the colored boxes around links that are otherwise present when viewing the document electronically
 \usepackage[hyphens]{url}
-\usepackage{cleveref}  % \cref{}: automatically adds "Figure" etc. to references.
+\usepackage[capitalize]{cleveref}  % \cref{}: automatically adds "Figure" etc. to references.
 
 
 %% glossaries, load after hyperref
 \usepackage{ragged2e}  % for \Centering, \RaggedLeft and \RaggedRight used in glossary entries
-\usepackage[toc]{glossaries}
+% this creates the 'list of acronyms'. Remove 'nonumberlist' to include a list of forward references to where the acronyms occur in the list of acronyms.
+\usepackage[toc,acronyms,nonumberlist]{glossaries}
+\makeglossaries
+\input{definitions/acronyms}
 
 \usepackage[all,defaultlines=3]{nowidow}  % prevent widows and orphans
 
@@ -130,6 +138,10 @@
 \makesavenoteenv{table}  % ditto
 
 \setcounter{tocdepth}{1}  % table of contents depth: 0 = chapter, 1 = section, 2 = subsection, 3 = subsubsection
+
+% Add 'appendix' in ToC.
+% Note that the 'title' and 'header' option of the 'appendix' package does not work in the scrbook-class!
+\usepackage[titletoc]{appendix}
 
 \input{definitions/metadata}
 
@@ -223,8 +235,9 @@
 \ifnum\totvalue{totalgorithms}>0
   \listofalgorithms
 \fi
+\printglossary[type=\acronymtype,title=List of Acronyms]
 
-
+% TODO: how to do short captions in the list of figures etc? \caption[shortcap]{longcaaaaap}
 % TODO: glossaries, notation, abbreviations
 %\printglossaries
 %\listofabbreviations
@@ -233,8 +246,8 @@
 % actual content
 \mainmatter
 \include{chapters/10_introduction}
-\include{chapters/20_related}
-\include{chapters/30_background}
+\include{chapters/20_background}
+\include{chapters/30_related}
 \include{chapters/40_methods}
 \include{chapters/50_experiments}
 \include{chapters/60_results}
@@ -245,9 +258,12 @@
 \chapter{Bibliography}
 \printbibliography[heading=none]
 
+
 % Appendices
-\appendix
-\include{chapters/90_appendix}
+\begin{appendices}
+    \renewcommand\chapterformat{Appendix~\thechapter.\enskip}
+    \include{chapters/90_appendix}
+\end{appendices}
 % \include{chapters/91_appendix_<name>}
 % \include{chapters/92_appendix_<name>}
 

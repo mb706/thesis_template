@@ -1,3 +1,29 @@
 \chapter{Results}\label{chap:results}
 
-TODO: results. What are the results of the experiments? What do they mean? How do they relate to the research questions(s) or hypothesis(es) stated in the introduction? Make a choice between interpreting the results in this chapter, or in the discussion chapter.
+What are the results of the experiments?
+
+This chapter should likely contain various figures and tables.
+It is also possible to move some figures into the appendix, particularly if there are many figures that show results that lead to essentially the same conclusion.
+
+Some words on figure captions:
+A figure caption should make it possible to understand the figure without having to look for the particular place in the text where the figure is referenced.
+A figure caption can, of course, use technical terms and names of algorithms introduced in the thesis's main text.
+It also does not need to justify or explain the experimental setup.
+However, apart from that, one should be able to understand a figure from just looking at the figure and its caption.
+Captions should shortly describe what is being shown, and should give some orientation that helps reading the figure (e.g.\ if there is a particular pattern in how points were coloured that is not straightforwardly visible from the legend, like ``shades of blue are baselines'').
+They should also give some information about units that can not be seen from axis labels alone, most importantly whether \emph{error bars are standard deviations, standard errors, confidence intervals or something else}.
+When not obvious from the things being measured, an indication of whether `more' or `less' of it is a more desirable trait should also be given. 
+Captions may also draw attention to specific aspects of the figure that could easily be missed (e.g.\ unusual axis scales), or explain things that may be surprising or may look like an error at first sight.
+E.g.\ ``Cromulence (in log-units, more is better) of optimisation methods on different subsets of the \texttt{cats} dataset. Solid lines are our algorithms, dashed lines represent baselines. Error bars give 95\% confidence intervals. Error bars for \texttt{RS} are not shown as the values represents a theoretical, and hence exact, result.''
+
+The ``Experiments'' chapter should also contain some text which shortly describes and references the tables and figures.
+The main text should \emph{not} explain how to read the figures.
+This is what the captions are for!
+It is not unusual for this chapter to have not that much main text.
+
+To some degree you need to choose what part of interpretation you do in this chapter, and what in the discussion chapter.
+A rule of thumb could be:
+Describe here what can immediately be observed in the results:
+E.g.\ ``Method~A outperforms method~B on datasets X and Y but method~B dominates on dataset~C''.
+More general interpretation, or theoretically motivated conclusions, should go into the ``Discussion'' chapter, e.g.\ ``Method~A performs best on datasets with exclusively numeric features, whereas the particular optimizations for categorical features includedin method~B make it perform best on the dataset~C, the only dataset with categorical features.''.
+
